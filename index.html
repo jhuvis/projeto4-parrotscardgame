@@ -13,53 +13,112 @@
       <h1>PARROT CARD GAME</h1>
     </div>
     <div class="jogo">
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(0)" data-identifier="card">
+        <img data-identifier="back-face" id="0" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(1)" data-identifier="card">
+        <img data-identifier="back-face" id="1" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(2)" data-identifier="card">
+        <img data-identifier="back-face" id="2" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(3)" data-identifier="card">
+        <img data-identifier="back-face" id="3" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(4)" data-identifier="card">
+        <img data-identifier="back-face" id="4" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(5)" data-identifier="card">
+        <img data-identifier="back-face" id="5" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(6)" data-identifier="card">
+        <img data-identifier="back-face" id="6" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(7)" data-identifier="card">
+        <img data-identifier="back-face" id="7" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(8)" data-identifier="card">
+        <img data-identifier="back-face" id="8" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(9)" data-identifier="card">
+        <img data-identifier="back-face" id="9" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(10)" data-identifier="card">
+        <img data-identifier="back-face" id="10" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(11)" data-identifier="card">
+        <img data-identifier="back-face" id="11" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(12)" data-identifier="card">
+        <img data-identifier="back-face" id="12" src="img/front.png"/>
       </div>
-      <div class="none" data-identifier="card">
-        <img data-identifier="back-face" src="img/front.png"/>
+      <div class="none" onclick="viraCarta(13)" data-identifier="card">
+        <img data-identifier="back-face" id="13" src="img/front.png"/>
       </div>
     </div>
 
     <script>
       const itens = document.querySelectorAll(".none");
-      iniciar();
+      const imgs = new Array();
+      let primeira = true;
+      let ultima;
+      let acerto = 0;
+      let n = iniciar();
+      embaralha();
+      
+
+      function embaralha()
+      {
+        let i;
+        for( i = 0; i < n*2; i++)
+        {
+          imgs[i] = "i" + Math.floor(i/2);
+        }
+        imgs.sort(comparador);
+
+      }
+
+      function comparador() 
+      { 
+	      return Math.random() - 0.5; 
+      }
+
+      function viraCarta(e)
+      {
+        if(primeira == true)
+        {
+          primeira = false;
+          document.getElementById("" + e).src = "img/" + imgs[e] + ".gif"; 
+          ultima = e;
+          alert(ultima);
+        }
+        else
+        {
+          if(ultima !== e)
+          {
+            document.getElementById("" + e).src = "img/" + imgs[e] + ".gif";
+            if(imgs[e] == imgs[ultima])
+            {
+              alert("acertou");
+              acerto++;
+            }
+            else
+            {
+              
+              setTimeout(function() { 
+              alert(ultima);
+              document.getElementById("" + ultima).src = "img/front.png";
+              document.getElementById("" + e).src = "img/front.png";
+              }, 1000);
+              
+              
+            }   
+            primeira = true;
+            ultima = e; 
+          }
+          
+        }
+      }
 
       function iniciar()
       {
@@ -73,6 +132,7 @@
         {
           itens[i].classList.add("cartaV");
         }
+        return n;
       }
     </script>
   </body>
