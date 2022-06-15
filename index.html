@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="estilo.css" />
+    <title>Jogo memo zezin</title>
+  </head>
+  <body>
+    <div class="top">
+      <h1>PARROT CARD GAME</h1>
+    </div>
+    <div class="jogo">
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+      <div class="none" data-identifier="card">
+        <img data-identifier="back-face" src="img/front.png"/>
+      </div>
+    </div>
+
+    <script>
+      const itens = document.querySelectorAll(".none");
+      iniciar();
+
+      function iniciar()
+      {
+        let n = Number(prompt("digite um numero de cartas entre 4 e 14"));
+        while((n%2 !=0)||(n < 4) || (n > 14))
+        {
+          n = Number(prompt("digite um valor valido(tem que ser par)"));
+        }
+        let i;
+        for(i = 0; i < n; i++)
+        {
+          itens[i].classList.add("cartaV");
+        }
+      }
+    </script>
+  </body>
+</html>

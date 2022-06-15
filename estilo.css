@@ -1,0 +1,63 @@
+body
+{
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    justify-content: center; 
+    background-color: #EEF9BF;
+    font-family: "Roboto";
+}
+
+.none
+{
+    display: none;
+}
+
+.top
+{
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.top h1 
+{
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+    margin: 40px;
+}
+
+.jogo
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.cartaV
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 117px;
+    height: 146px;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    margin: 10px;
+
+}
+
+.cartaV img
+{
+    width: 100px;
+    height: 100px;
+}
