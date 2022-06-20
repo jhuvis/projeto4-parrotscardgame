@@ -53,7 +53,7 @@
       <div class="none" onclick="viraCarta(12)" data-identifier="card">
         <img data-identifier="back-face" id="12" src="img/front.png"/>
       </div>
-      <div class="none" onclick="viraCarta(13)" data-identifier="card">
+      <div class="none" onclick="setTimeout(viraCarta(13), 1000)" data-identifier="card">
         <img data-identifier="back-face" id="13" src="img/front.png"/>
       </div>
     </div>
@@ -67,6 +67,7 @@
       let acerto = 0;
       let jogadas = 0;
       let tempo = 0;
+      let tempoBoolean = 0;
       let n = iniciar();
       setInterval("time();", 10);
       embaralha();
@@ -97,9 +98,10 @@
       function viraCarta(eba)
       {
         
+
         let e = eba;
         
-        if(tBoolean[e] == 0)
+        if((tBoolean[e] == 0) && (tempoBoolean == 0))
         {
         if(primeira == true)
         {
@@ -151,6 +153,7 @@
             else
             {
               
+              tempoBoolean = 1;
               setTimeout(function() { 
               
               document.getElementById("" + ultima).src = "img/front.png";
@@ -162,6 +165,7 @@
               jogadas++;
               primeira = true;
               ultima = e
+              tempoBoolean = 0;
               }, 1000);
               
               
@@ -170,8 +174,7 @@
                  
         }
         }
-        else
-          alert("tome");
+        
       }
 
       function iniciarNovo()
