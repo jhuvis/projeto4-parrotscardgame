@@ -9,6 +9,7 @@
     <title>Jogo memo zezin</title>
   </head>
   <body>
+    <input class="tempo" id="tempo" value="00:00">
     <div class="top">
       <h1>PARROT CARD GAME</h1>
     </div>
@@ -64,9 +65,17 @@
       let primeira = true;
       let ultima = 0;
       let acerto = 0;
+      let jogadas = 0;
+      let tempo = 0;
       let n = iniciar();
+      setInterval("time();", 10);
       embaralha();
       
+      function time()
+      {
+        tempo=tempo+0.01;
+        document.getElementById("tempo").value = tempo.toFixed(2);
+      }
 
       function embaralha()
       {
@@ -94,36 +103,63 @@
         {
         if(primeira == true)
         {
-          alert("primeira true");
           primeira = false;
           document.getElementById("" + e).src = "img/" + imgs[e] + ".gif"; 
+          itens[e].classList.add("front");
           tBoolean[e] = 1;
           ultima = e;
           
         }
         else
         {
-            alert("primeira false");
             
             document.getElementById("" + e).src = "img/" + imgs[e] + ".gif";
+            itens[e].classList.add("front");
             if(imgs[e] == imgs[ultima])
             {
+              
               tBoolean[e] = 1;
-              alert("acertou");
               acerto++;
+              jogadas++;
               primeira = true;
-              ultima = e
+              ultima = e;
+              if(acerto == n/2)
+              {
+                setTimeout(function() 
+                {  
+                  alert("voce ganhou com " + jogadas + " jogadas e um tempo de " + tempo.toFixed(2) + " segundos!" );
+
+                  var b = prompt("Deseja jogar novamente? sim ou não?");
+                  
+                while((b != "sim") && (b != "não"))
+                {
+                  b = prompt("Deseja jogar novamente? sim ou não? (digite direito)");
+                } 
+                if(b == "sim")
+                  iniciarNovo();
+                else
+                {
+                  alert("obrigado por jogar");
+                  window.open("https://www.google.com");
+                }
+                }, 501);
+
+               
+              }
+              
             }
             else
             {
               
-              alert("errou");
               setTimeout(function() { 
               
               document.getElementById("" + ultima).src = "img/front.png";
               document.getElementById("" + e).src = "img/front.png";
+              itens[e].classList.remove("front");
+              itens[ultima].classList.remove("front");
               tBoolean[e] = 0;
               tBoolean[ultima] = 0;
+              jogadas++;
               primeira = true;
               ultima = e
               }, 1000);
@@ -136,6 +172,28 @@
         }
         else
           alert("tome");
+      }
+
+      function iniciarNovo()
+      {
+        let i;
+        for(i = 0; i < n; i++)
+        {
+          itens[i].classList.remove("cartaV");
+          itens[i].classList.remove("front");
+          imgs.pop();
+          tBoolean[i] = 0;
+          document.getElementById("" + i).src = "img/front.png";
+        }
+
+        primeira = true;
+        ultima = 0;
+        acerto = 0;
+        jogadas = 0;
+        tempo = 0;
+        n = iniciar();
+        embaralha();
+
       }
 
       function iniciar()
